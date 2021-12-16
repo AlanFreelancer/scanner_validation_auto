@@ -5,7 +5,7 @@ import yaml
 
 HOME_DIR = os.path.expanduser('~')
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__))
-PROJECT_VERSION = 'v1.0 Beta'
+PROJECT_VERSION = 'v1.0'
 AUTHOR = 'Luke & Alan'
 
 main_icon = b'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'
@@ -89,6 +89,7 @@ class BarcodeGUI:
 
     def scan_layout(self):
         scan_layout = []
+        self.scan_events = []
         sku_data_name = self._current_gui_setting['current_sku']
         sku_data = self.sku_config.get(sku_data_name, None)
         if sku_data is None:
@@ -96,7 +97,6 @@ class BarcodeGUI:
             self.scan_events.append(f'-not_found-')
             return scan_layout
 
-        self.scan_events = []
         for item_name, data in sku_data.items():
             scan_layout.append([sg.T(item_name, size=self.DEFAULT_INFO_NAME_SIZE, text_color=self.SCAN_INFO_COLOR, font=self.SCAN_INFO_FONT),
                                 sg.InputText('', k=f'-{item_name}-', font=self.SCAN_INFO_FONT),
@@ -177,9 +177,17 @@ class BarcodeGUI:
                 # do it
                 a = 5
             elif event == 'Open SKU File':
-                a = sg.FileBrowse('Choose SKU file')
+                config_path = sg.popup_get_file('Choose SKU file', file_types=(("SKU Files", "*.yaml"),))
+                if config_path is not None:
+                    self._current_gui_setting['sku_path'] = config_path
+                    self.init_sku_config()
+                    # Reload GUI
+                    self.main_window.close()
+                    focus_key = self.init_main_window()
+
             elif event == self.EVENT_SKU_LIST:
                 print(f'Selected: {values[self.EVENT_SKU_LIST]}')
+                # Reload GUI
                 self.main_window.close()
                 focus_key = self.init_main_window(values[self.EVENT_SKU_LIST])
             elif self.is_scan_event(event):
@@ -210,6 +218,7 @@ class BarcodeGUI:
                         self.main_window[event].update('')
             elif event == 'About...':
                 sg.popup('Barcode Auto Scan and Validation!', 'Usage: Choose SKU File -> Choose SKU -> Begin Scanning',
+                         'Note: Choose SKU File: File->Open SKU File',
                          PROJECT_VERSION, title='About...', keep_on_top=True, image=main_icon, icon=main_icon)
             else:
                 print(f'Event: {event}')
