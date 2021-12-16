@@ -1,0 +1,5 @@
+.idea/
+*.pyc
+venv/
+demo_video/
+sample.py
