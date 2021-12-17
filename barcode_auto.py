@@ -111,7 +111,7 @@ class BarcodeGUI:
                     # ['&Debugger', ['Popout', 'Launch Debugger']],
                     # ['!&Disabled', ['Popout', 'Launch Debugger']],
                     # ['&Toolbar', ['Command &1', 'Command &2', 'Command &3', 'Command &4']],
-                    ['&Help', ['&About...']], ]
+                    ['&Help', ['&Scanner Configure', '&About...']], ]
 
         layout = [
             [sg.Menu(menu_def, key='_MENU_', font='Courier 15', background_color='grey', text_color='black', disabled_text_color='grey', tearoff=True)],
@@ -184,7 +184,6 @@ class BarcodeGUI:
                     # Reload GUI
                     self.main_window.close()
                     focus_key = self.init_main_window()
-
             elif event == self.EVENT_SKU_LIST:
                 print(f'Selected: {values[self.EVENT_SKU_LIST]}')
                 # Reload GUI
@@ -220,6 +219,8 @@ class BarcodeGUI:
                 sg.popup('Barcode Auto Scan and Validation!', 'Usage: Choose SKU File -> Choose SKU -> Begin Scanning',
                          'Note: Choose SKU File: File->Open SKU File',
                          PROJECT_VERSION, title='About...', keep_on_top=True, image=main_icon, icon=main_icon)
+            elif event == 'Scanner Configure':
+                sg.popup_animated('document\\enable_auto_mode.png', title='Scanner Configure', no_titlebar=False, icon=main_icon)
             else:
                 print(f'Event: {event}')
         print('Bye!')
